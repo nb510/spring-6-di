@@ -1,24 +1,14 @@
 package guru.springframework.spring6di.controller;
 
-import guru.springframework.spring6di.service.GreetingServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.util.ReflectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.lang.reflect.Field;
-
+@SpringBootTest
 class PropertyInjectedControllerTest {
 
+    @Autowired
     PropertyInjectedController propertyInjectedController;
-
-    @BeforeEach
-    void setUp() throws NoSuchFieldException {
-        propertyInjectedController = new PropertyInjectedController();
-
-        Field field = PropertyInjectedController.class.getDeclaredField("greetingService");
-        field.setAccessible(true);
-        ReflectionUtils.setField(field, propertyInjectedController, new GreetingServiceImpl());
-    }
 
     @Test
     void testPropertyInjection() {
